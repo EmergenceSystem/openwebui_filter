@@ -1,15 +1,23 @@
 {application, openwebui_filter, [
     {description, "em_filter for Open WebUI (OpenAI-compatible API)"},
-    {vsn, "0.1.0"},
-    {registered, []},
+    {vsn, "0.2.0"},
+    {registered, [openwebui_filter_sup, openwebui_filter_server]},
     {mod, {openwebui_filter_app, []}},
     {applications, [
         kernel,
         stdlib,
+        cowboy,
         em_filter
     ]},
-    {env, []},
-    {modules, []},
+    {env, [
+        {pop_port,   0},
+        {query_port, 0},
+        {pop_seeds,  []}
+    ]},
+    {modules, [
+        openwebui_filter_sup,
+        openwebui_filter_server
+    ]},
     {licenses, ["Apache-2.0"]},
     {links, []}
 ]}.
